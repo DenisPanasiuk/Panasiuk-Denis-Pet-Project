@@ -20,16 +20,14 @@
         <logout logout-success-url="/login?logout"/>
     </http>
 
-
-
     <authentication-manager alias="authenticationManager">
         <authentication-provider user-service-ref="userDetailsServiceImpl">
-            <password-encoder ref="encoder"></password-encoder>
+            <password-encoder ref="encoder"/>
         </authentication-provider>
     </authentication-manager>
 
     <beans:bean id="userDetailsServiceImpl"
-                class="net.Panasiuk_WebSite.Logic.Authorization.service.UserDetailsServiceImpl"></beans:bean>
+                class="net.Panasiuk_WebSite.Logic.Authorization.service.UserDetailsServiceImpl"/>
 
     <beans:bean id="encoder"
                 class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">

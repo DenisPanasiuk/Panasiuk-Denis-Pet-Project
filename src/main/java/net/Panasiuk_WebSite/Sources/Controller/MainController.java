@@ -2,7 +2,6 @@ package net.Panasiuk_WebSite.Sources.Controller;
 
 import net.Panasiuk_WebSite.Logic.Authorization.dao.MarkDao;
 import net.Panasiuk_WebSite.Logic.Authorization.dao.UserDao;
-import net.Panasiuk_WebSite.Logic.Authorization.service.SecurityService;
 import net.Panasiuk_WebSite.Logic.Authorization.service.UserService;
 import net.Panasiuk_WebSite.Sources.Model.Mark;
 import net.Panasiuk_WebSite.Sources.Model.User;
@@ -23,9 +22,6 @@ public class MainController {
 
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private SecurityService securityService;
 
     @Autowired
     private UserValidator userValidator;
@@ -82,7 +78,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/admin/newStudent", method = RequestMethod.POST)
-    public String registration(@ModelAttribute("userForm") User userForm,BindingResult bindingResult, Model model) {
+    public String registration(@ModelAttribute("userForm") User userForm,BindingResult bindingResult) {
         userValidator.validate(userForm, bindingResult);
         if (bindingResult.hasErrors()) {
             return "registration";
@@ -121,7 +117,8 @@ public class MainController {
         return "redirect: /admin";
     }
 
-
-
-
+    @RequestMapping(value = "/403", method = {RequestMethod.POST, RequestMethod.GET})
+    public String error403(){
+        return "403";
+    }
 }

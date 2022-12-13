@@ -21,7 +21,6 @@
         <div style="text-align: center" class="container">
             <h1>${oneStudent.name} ${oneStudent.surname} | <a href="/welcome">Back!</a></h1>
             <h2>Course: ${oneStudent.course} &nbsp; &nbsp; Sex: ${oneStudent.sex}</h2>
-            <h4>Id: ${oneStudent.id}</h4>
             <h2>Math: ${studentMarks.math} &nbsp; &nbsp; History: ${studentMarks.history}</h2>
             <h2>Biology: ${studentMarks.biology} &nbsp; &nbsp; Geography: ${studentMarks.geography}</h2>
             <h2>Chemistry: ${studentMarks.chemistry} &nbsp; &nbsp; English: ${studentMarks.english}</h2>
