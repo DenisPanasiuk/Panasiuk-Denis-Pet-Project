@@ -28,13 +28,14 @@
             <div style="display: flex; justify-content: center; text-align: center">
                 <form:form method="POST" modelAttribute="studentMarks" class="form-signin" cssStyle="width: 60%;">
                     <h2 class="form-signin-heading" style="text-align: center">Changing marks</h2>
+                    <h4 class="form-signin-heading" style="text-align: center">Marks can be only from 1 to 100</h4>
                 <spring:bind path="math">
                 <div style="text-align: right;" class="form-group ${status.error ? 'has-error' : ''}">
                     <div class="container" style="display: table; text-align: right;">
                         <h3 style="display: table-cell; width: 1px; white-space: nowrap;" for="test">&emsp;&emsp;&ensp;Math:</h3>
                         <span style="display: table-cell; padding: 0 4px 0 6px; width: 70%">
                     <form:input cssStyle="text-align: center; width: 70%" type="text" path="math" class="form-control" placeholder="Math" autofocus="true"/>
-                    <form:errors path="math"/>
+
                         </span>
                     </div>
                 </div>

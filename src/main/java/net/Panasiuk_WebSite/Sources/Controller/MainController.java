@@ -5,6 +5,7 @@ import net.Panasiuk_WebSite.Logic.Authorization.dao.UserDao;
 import net.Panasiuk_WebSite.Logic.Authorization.service.UserService;
 import net.Panasiuk_WebSite.Sources.Model.Mark;
 import net.Panasiuk_WebSite.Sources.Model.User;
+import net.Panasiuk_WebSite.Sources.Validator.MarksValidator;
 import net.Panasiuk_WebSite.Sources.Validator.UserValidator;
 import org.decimal4j.util.DoubleRounder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,9 @@ public class MainController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private MarksValidator marksValidator;
 
     @Autowired
     private UserValidator userValidator;
@@ -80,7 +84,7 @@ public class MainController {
     @RequestMapping(value = "/admin/newStudent", method = RequestMethod.POST)
     public String registration(@ModelAttribute("userForm") User userForm,BindingResult bindingResult) {
         userValidator.validate(userForm, bindingResult);
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors() || userForm.getCourse().isEmpty()) {
             return "registration";
         }
         userService.save(userForm);
@@ -106,7 +110,12 @@ public class MainController {
     }
 
     @RequestMapping(value = "/admin/oneStudent/{id}/editMarks", method = RequestMethod.POST)
-    public String changeMarks(@ModelAttribute("studentMarks") Mark marks){
+    public String changeMarks(@PathVariable("id") Long id, @ModelAttribute("studentMarks") Mark marks, BindingResult bindingResult, Model model){
+        marksValidator.validate(marks, bindingResult);
+        model.addAttribute("oneStudent", userDao.findUserById(id));
+        if (bindingResult.hasErrors()){
+            return "/editStudentMarks";
+        }
         markDao.save(marks);
         return "redirect: /admin/oneStudent/{id}";
     }

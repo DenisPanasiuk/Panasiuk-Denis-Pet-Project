@@ -26,7 +26,7 @@
             <h2>Math: ${studentMarks.math} &nbsp; &nbsp; History: ${studentMarks.history}</h2>
             <h2>Biology: ${studentMarks.biology} &nbsp; &nbsp; Geography: ${studentMarks.geography}</h2>
             <h2>Chemistry: ${studentMarks.chemistry} &nbsp; &nbsp; English: ${studentMarks.english}</h2>
-            <h1>Average mark ${averageMark}</h1>
+            <h1>Average mark ${averageMark} / 100</h1>
             <form:form method="POST" action="/admin/oneStudent/delete/${oneStudent.id}" class="form-signin">
                 <input type="hidden" name="_method" value="delete">
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Delete this student</button>
